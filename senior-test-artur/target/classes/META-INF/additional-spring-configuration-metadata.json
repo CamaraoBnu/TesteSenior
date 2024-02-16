@@ -1,0 +1,24 @@
+{
+    "properties": [
+        {
+            "name": "com.senior.databaseName",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "com.senior.databaseHost",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "com.senior.databasePort",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "com.senior.databaseUsername",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "com.senior.databasePassword",
+            "type": "java.lang.String"
+        }
+    ]
+}
