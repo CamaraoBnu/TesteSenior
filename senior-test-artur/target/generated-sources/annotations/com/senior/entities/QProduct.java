@@ -22,7 +22,7 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final BooleanPath active = createBoolean("active");
 
-    public final ListPath<CartProduct, QCartProduct> cartProducts = this.<CartProduct, QCartProduct>createList("cartProducts", CartProduct.class, QCartProduct.class, PathInits.DIRECT2);
+    public final ListPath<CartProduct, QCartProduct> cartProduct = this.<CartProduct, QCartProduct>createList("cartProduct", CartProduct.class, QCartProduct.class, PathInits.DIRECT2);
 
     public final DateTimePath<java.util.Date> createdAt = createDateTime("createdAt", java.util.Date.class);
 

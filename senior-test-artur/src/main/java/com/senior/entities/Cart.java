@@ -1,9 +1,12 @@
 package com.senior.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -22,28 +25,16 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Cart {
-    public Cart() {
-        this.discount = 0d;
-        this.status = CartStatus.OPEN;
-    }
-
-    @Builder
-    public Cart(double discount, CartStatus status) {
-        this.discount = discount ;
-        if (status != null) {
-            this.status = status;
-        } else {
-            this.status = CartStatus.OPEN;
-        }
-    }
 
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     private String id;
 
-    @OneToMany(mappedBy = "cart")
-    private List<CartProduct> cartProducts;
+    @OneToMany(mappedBy = "id")
+    private List<CartProduct> cartProduct = new ArrayList<>();
 
+    @PositiveOrZero
+    @Max(value = 100, message = "Discount must be between 0.0 and 100.0")
     @Column(name = "amt_discount", nullable = true, unique = false)
     private double discount;
 
@@ -61,4 +52,20 @@ public class Cart {
 
     @Column(name = "deleted_at", nullable = true, unique = false)
     private Date deletedAt;
+
+    public Cart() {
+        this.discount = 0d;
+        this.status = CartStatus.OPEN;
+    }
+
+    @Builder
+    public Cart(double discount, CartStatus status) {
+        this.discount = discount ;
+        if (status != null) {
+            this.status = status;
+        } else {
+            this.status = CartStatus.OPEN;
+        }
+    }
+
 }

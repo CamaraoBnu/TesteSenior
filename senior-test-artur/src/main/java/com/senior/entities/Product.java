@@ -1,9 +1,11 @@
 package com.senior.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -40,12 +42,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @OneToMany(mappedBy = "product")
-    private List<CartProduct> cartProducts;
+    @OneToMany(mappedBy = "id")
+    private List<CartProduct> cartProduct = new ArrayList<>();
 
     @Column(name = "ds_name", nullable = false, unique = false)
     private String name;
 
+    @PositiveOrZero
     @Column(name = "amt_price", nullable = false, unique = false)
     private double price;
 
