@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.senior.dto.request.CartRequest;
 import com.senior.dto.response.CartResponse;
-import jakarta.validation.OverridesAttribute;
+import com.senior.entities.CartProduct;
+import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,26 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Cart> getAll() {
         return this.cartRepository.getAll();
+    }
+
+    @Override
+    public Double getTotalPriceDiscount(CartRequest request) {
+        Cart cart = findCartById(request.getId());
+        List<CartProduct> cartProduct = cart.getCartProduct();
+        double totalProduct = 0;
+        double totalService = 0;
+        for (int i = 0; i < cartProduct.size(); i++) {
+            int quantity = cartProduct.get(i).getQuantity();
+            if (cartProduct.get(i).getProduct().isProductProductType()) {
+                totalProduct = totalProduct + cartProduct.get(i).getProduct().getPrice() * quantity;
+            } else {
+                totalService = totalService + cartProduct.get(i).getProduct().getPrice() * quantity;
+            }
+        }
+        totalProduct = ((100 - cart.getDiscount())/100) * totalProduct;
+
+
+        return Precision.round(totalProduct + totalService, 2) ;
     }
 
     @Override

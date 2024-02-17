@@ -30,7 +30,7 @@ public class Cart {
     @Id
     private String id;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "cart")
     private List<CartProduct> cartProduct = new ArrayList<>();
 
     @PositiveOrZero

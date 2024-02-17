@@ -11,6 +11,7 @@ import com.senior.repositories.CartProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,7 +29,6 @@ public class CartProductServiceImpl implements CartProductService{
     public List<CartProduct> getAll() {
         return this.cartProductRepository.getAll();
     }
-
 
 
     @Override

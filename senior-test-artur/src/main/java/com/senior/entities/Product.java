@@ -42,7 +42,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "product")
     private List<CartProduct> cartProduct = new ArrayList<>();
 
     @Column(name = "ds_name", nullable = false, unique = false)
@@ -75,6 +75,6 @@ public class Product {
     }
 
     public boolean isProductServiceType() {
-        return this.type == ProductType.PRODUCT;
+        return this.type == ProductType.SERVICE;
     }
 }

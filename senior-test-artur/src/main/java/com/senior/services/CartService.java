@@ -15,4 +15,6 @@ public interface CartService {
 
     CartResponse updateCartById(CartRequest request, String id);
     CartResponse deleteCartById(CartRequest request, String id);
+
+    Double getTotalPriceDiscount(CartRequest request);
 }

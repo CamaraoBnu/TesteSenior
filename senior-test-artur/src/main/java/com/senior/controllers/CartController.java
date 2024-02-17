@@ -24,12 +24,14 @@ public class CartController {
     
     @PostMapping(path = "/", produces = "application/json", consumes = "application/json")
     public CartResponse create(@Valid @RequestBody CartRequest body, HttpServletRequest request) {
-
-        CartResponse cartCreated = cartService.create(body);
-        return cartCreated;
+        return cartService.create(body);
 
     }
 
+    @GetMapping(path = "/{id}")
+    public Double getTotalPriceDiscount(CartRequest body, @PathVariable String id){
+        return this.cartService.getTotalPriceDiscount(body);
+    }
 
     @GetMapping(path = "/")
     public List<Cart> listAllCarts(){
@@ -38,8 +40,6 @@ public class CartController {
 
     @PutMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
     public void updateCartById(@RequestBody CartRequest request, @PathVariable String id){
-
-        log.info("Updating cart resource", id);
         this.cartService.updateCartById(request, id);
     }
 
@@ -47,4 +47,6 @@ public class CartController {
     public void deleteCartById(@RequestBody CartRequest request, @PathVariable String id) {
         this.cartService.deleteCartById(request, id);
     }
+
+
 }

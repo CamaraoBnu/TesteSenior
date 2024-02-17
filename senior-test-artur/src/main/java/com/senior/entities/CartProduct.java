@@ -28,15 +28,15 @@ public class CartProduct {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(name = "qt_products", nullable = false, unique = false)
+    @Column(name = "qt_products", nullable = false)
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id",  unique = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", referencedColumnName = "id", unique = false)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
     @CreatedDate
