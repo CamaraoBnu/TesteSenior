@@ -42,8 +42,10 @@ public class CartServiceImpl implements CartService {
                 totalService = totalService + cartProduct.get(i).getProduct().getPrice() * quantity;
             }
         }
-        totalProduct = ((100 - cart.getDiscount())/100) * totalProduct;
 
+        if(cart.isCartOpen()) {
+            totalProduct = ((100 - cart.getDiscount())/100) * totalProduct;
+        }
 
         return Precision.round(totalProduct + totalService, 2) ;
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.senior.enums.ProductType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -66,6 +67,10 @@ public class Cart {
         } else {
             this.status = CartStatus.OPEN;
         }
+    }
+
+    public boolean isCartOpen() {
+        return this.status == CartStatus.OPEN;
     }
 
 }
