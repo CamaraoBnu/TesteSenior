@@ -16,5 +16,5 @@ public interface ProductService {
 
     ProductResponse updateProductById(ProductRequest request, String id);
 
-    ProductResponse deleteProductById(ProductRequest request, String id);
+    String deleteProductById(ProductRequest request, String id);
 }

@@ -40,7 +40,7 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
-    public void deleteProductById(@RequestBody ProductRequest request, @PathVariable String id) {
-        this.productService.deleteProductById(request, id);
+    public String deleteProductById(@RequestBody ProductRequest request, @PathVariable String id) {
+        return this.productService.deleteProductById(request, id);
     }
 }
