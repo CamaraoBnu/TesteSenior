@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.senior.enums.ProductType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -32,6 +33,7 @@ public class Cart {
     private String id;
 
     @OneToMany(mappedBy = "cart")
+    @JsonManagedReference
     private List<CartProduct> cartProduct = new ArrayList<>();
 
     @PositiveOrZero

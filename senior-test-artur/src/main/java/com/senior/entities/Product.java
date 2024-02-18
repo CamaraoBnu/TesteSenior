@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -43,8 +45,10 @@ public class Product {
     private String id;
 
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference
     private List<CartProduct> cartProduct = new ArrayList<>();
 
+    @NotNull(message = "Product name can't be null")
     @Column(name = "ds_name", nullable = false, unique = false)
     private String name;
 

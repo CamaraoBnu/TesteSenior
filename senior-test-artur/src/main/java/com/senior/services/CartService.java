@@ -6,6 +6,7 @@ import java.util.Map;
 import com.senior.dto.request.CartRequest;
 import com.senior.dto.response.CartResponse;
 import com.senior.entities.Cart;
+import com.senior.enums.CartStatus;
 
 public interface CartService {
     Cart findCartById(String id);
@@ -18,4 +19,6 @@ public interface CartService {
     CartResponse deleteCartById(CartRequest request, String id);
 
     Map<String,Double> getTotalPriceDiscount(CartRequest request);
+
+    List<Cart> getCartsByStatus(CartStatus status);
 }

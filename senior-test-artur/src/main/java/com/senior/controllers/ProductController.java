@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @RestController
@@ -24,23 +25,28 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping(path = "/", produces = "application/json", consumes = "application/json")
+    @PostMapping(path = "/create", produces = "application/json", consumes = "application/json")
     public ProductResponse create(@RequestBody ProductRequest body) {
         return productService.create(body);
     }
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/list")
     public List<Product> listAllProducts(){
         return this.productService.getAll();
     }
 
-    @PutMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
+    @GetMapping(path = "/listType/{type}")
+    public List<Product> listProductByType(@PathVariable String type) {
+        return this.productService.getListByType(type);
+    }
+
+    @PutMapping(path = "/update/{id}", produces = "application/json", consumes = "application/json")
     public void updateProductById(@RequestBody ProductRequest request, @PathVariable String id){
         this.productService.updateProductById(request, id);
     }
 
-    @DeleteMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
-    public String deleteProductById(@RequestBody ProductRequest request, @PathVariable String id) {
+    @DeleteMapping(path = "/delete/{id}", produces = "application/json", consumes = "application/json")
+    public Map<String,String> deleteProductById(@RequestBody ProductRequest request, @PathVariable String id) {
         return this.productService.deleteProductById(request, id);
     }
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import com.senior.dto.request.CartRequest;
 import com.senior.dto.response.CartResponse;
 import com.senior.entities.CartProduct;
+import com.senior.enums.CartStatus;
 import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class CartServiceImpl implements CartService {
     public List<Cart> getAll() {
         return this.cartRepository.getAll();
     }
+
 
     @Override
     public Map<String,Double> getTotalPriceDiscount(CartRequest request) {
@@ -54,6 +56,11 @@ public class CartServiceImpl implements CartService {
         resp.put("Total Pice:",total) ;
         return resp;
 
+    }
+
+    @Override
+    public List<Cart> getCartsByStatus(CartStatus status) {
+        return this.cartRepository.getCartsByStatus(status);
     }
 
     @Override

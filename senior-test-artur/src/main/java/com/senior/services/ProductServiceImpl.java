@@ -14,7 +14,10 @@ import com.senior.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -33,7 +36,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        return this.productRepository.getAll();
+    }
+
+    @Override
+    public List<Product> getListByType(String type) {
+        return this.productRepository.getListByType(type);
     }
 
     @Override
@@ -52,7 +60,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public String deleteProductById(ProductRequest request, String id) {
+    public Map<String,String> deleteProductById(ProductRequest request, String id) {
+        Map<String,String> resp = new HashMap<>();
         Product product = request.toEntity();
         List<CartProduct> list = this.cartProductRepository.getAll();
         int countHas = 0;
@@ -62,12 +71,14 @@ public class ProductServiceImpl implements ProductService {
            }
         }
         if (countHas > 0) {
-            return "Product already attached to a cart. Exclusion Denied.";
+            resp.put("response", "Product already attached to a cart. Exclusion Denied.");
+            return resp;
         }
 
         Product updatedProduct = this.productRepository.deleteCartById(product, id);
         ProductResponse.fromEntity(updatedProduct);
-        return "Product Deleted.";
+        resp.put("reponse", "Product Deleted.");
+        return resp;
     }
 
 

@@ -32,7 +32,7 @@ public class CartProductController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping(path = "/{productId}/{cartId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "application/json")
+    @PostMapping(path = "/create/{productId}/{cartId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "application/json")
     public Map<String,String> create(@Valid @RequestBody CartProductRequest body,
                                       @PathVariable String productId,
                                       @PathVariable String cartId ) {
@@ -44,17 +44,17 @@ public class CartProductController {
     }
 
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/list")
     public List<CartProduct> listAllCarts(){
         return this.CartProductService.getAll();
     }
 
-    @PutMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
+    @PutMapping(path = "/update/{id}", produces = "application/json", consumes = "application/json")
     public void updateCartById(@RequestBody CartProductRequest request, @PathVariable String id){
         this.CartProductService.updateCartById(request, id);
     }
 
-    @DeleteMapping(path = "/{id}", produces = "application/json", consumes = "application/json")
+    @DeleteMapping(path = "/delete/{id}", produces = "application/json", consumes = "application/json")
     public void deleteCartById(@RequestBody CartProductRequest request, @PathVariable String id) {
         this.CartProductService.deleteCartById(request, id);
     }

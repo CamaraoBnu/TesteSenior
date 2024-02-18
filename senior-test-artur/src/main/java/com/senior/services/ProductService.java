@@ -5,6 +5,7 @@ import com.senior.dto.response.ProductResponse;
 import com.senior.entities.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
 
@@ -16,5 +17,7 @@ public interface ProductService {
 
     ProductResponse updateProductById(ProductRequest request, String id);
 
-    String deleteProductById(ProductRequest request, String id);
+    Map<String,String> deleteProductById(ProductRequest request, String id);
+
+    List<Product> getListByType(String type);
 }

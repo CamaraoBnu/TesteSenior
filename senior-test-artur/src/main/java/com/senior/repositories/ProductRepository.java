@@ -6,6 +6,7 @@ import com.senior.entities.Cart;
 import com.senior.entities.Product;
 import com.senior.entities.QCart;
 import com.senior.entities.QProduct;
+import com.senior.enums.ProductType;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,25 @@ public class ProductRepository {
         return queryFactory
                 .selectFrom(product)
                 .fetch();
+    }
+
+    public List<Product> getListByType(String type) {
+
+        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+        QProduct product = QProduct.product;
+
+        if(type.equalsIgnoreCase( "SERVICE")) {
+            return queryFactory
+                    .selectFrom(product)
+                    .where(product.type.eq(ProductType.SERVICE))
+                    .fetch();
+        } else {
+            return queryFactory
+                    .selectFrom(product)
+                    .where(product.type.eq(ProductType.PRODUCT))
+                    .fetch();
+        }
+
     }
 
     @Transactional

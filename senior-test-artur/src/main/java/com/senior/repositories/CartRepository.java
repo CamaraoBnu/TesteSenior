@@ -45,6 +45,16 @@ public class CartRepository {
                 .fetch();
     }
 
+    public List<Cart> getCartsByStatus(CartStatus status) {
+        JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+        QCart cart = QCart.cart;
+            return queryFactory
+                    .selectFrom(cart)
+                    .where(cart.status.eq(status))
+                    .fetch();
+
+    }
+
     @Transactional
     public Cart saveWithTransaction(Cart cart) {
         this.entityManager.persist(cart);

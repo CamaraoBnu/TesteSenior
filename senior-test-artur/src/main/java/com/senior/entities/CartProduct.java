@@ -2,7 +2,10 @@ package com.senior.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -28,14 +31,17 @@ public class CartProduct {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Positive
     @Column(name = "qt_products", nullable = false)
     private int quantity;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
