@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
            }
         }
         if (countHas > 0) {
-            return "Product already attached to a cart. exclusion Denied.";
+            return "Product already attached to a cart. Exclusion Denied.";
         }
 
         Product updatedProduct = this.productRepository.deleteCartById(product, id);

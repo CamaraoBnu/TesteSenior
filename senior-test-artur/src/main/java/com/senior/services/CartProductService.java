@@ -9,13 +9,14 @@ import com.senior.entities.CartProduct;
 import com.senior.entities.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CartProductService {
     CartProduct findCartProductById(String id);
 
     List<CartProduct> getAll();
 
-    CartProductResponse addProductToCart(CartProductRequest request, Product product, Cart cart);
+    Map<String,String> addProductToCart(CartProductRequest request, Product product, Cart cart);
 
     CartProductResponse updateCartById(CartProductRequest request, String id);
     CartProductResponse deleteCartById(CartProductRequest request, String id);

@@ -1,6 +1,8 @@
 package com.senior.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.senior.dto.request.CartRequest;
 import com.senior.dto.response.CartResponse;
@@ -29,11 +31,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Double getTotalPriceDiscount(CartRequest request) {
+    public Map<String,Double> getTotalPriceDiscount(CartRequest request) {
+        Map<String,Double> resp = new HashMap<>();
         Cart cart = findCartById(request.getId());
         List<CartProduct> cartProduct = cart.getCartProduct();
         double totalProduct = 0;
         double totalService = 0;
+        double total = 0;
         for (int i = 0; i < cartProduct.size(); i++) {
             int quantity = cartProduct.get(i).getQuantity();
             if (cartProduct.get(i).getProduct().isProductProductType()) {
@@ -46,13 +50,17 @@ public class CartServiceImpl implements CartService {
         if(cart.isCartOpen()) {
             totalProduct = ((100 - cart.getDiscount())/100) * totalProduct;
         }
+        total = Precision.round(totalProduct + totalService, 2);
+        resp.put("Total Pice:",total) ;
+        return resp;
 
-        return Precision.round(totalProduct + totalService, 2) ;
     }
 
     @Override
     public CartResponse create(CartRequest request) {
         Cart cart = request.toEntity();
+
+
         Cart createdCart = this.cartRepository.saveWithTransaction(cart);
 
         return CartResponse.fromEntity(createdCart);

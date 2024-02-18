@@ -1,10 +1,1 @@
-com\senior\entities\Cart$CartBuilder.class
-com\senior\dto\response\CartProductResponse$CartProductResponseBuilder.class
-com\senior\enums\ProductType.class
-com\senior\entities\Cart.class
-com\senior\entities\CartProduct$CartProductBuilder.class
-com\senior\enums\CartStatus.class
-com\senior\entities\CartProduct.class
-com\senior\entities\Product.class
-com\senior\dto\response\CartProductResponse.class
-com\senior\entities\Product$ProductBuilder.class
+META-INF\spring-configuration-metadata.json

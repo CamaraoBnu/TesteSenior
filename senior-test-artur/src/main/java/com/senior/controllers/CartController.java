@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @RestController
@@ -29,7 +30,7 @@ public class CartController {
     }
 
     @GetMapping(path = "/{id}")
-    public Double getTotalPriceDiscount(CartRequest body, @PathVariable String id){
+    public Map<String,Double> getTotalPriceDiscount(CartRequest body, @PathVariable String id){
         return this.cartService.getTotalPriceDiscount(body);
     }
 

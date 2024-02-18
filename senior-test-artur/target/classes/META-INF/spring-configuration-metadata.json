@@ -1,0 +1,57 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.senior.app.ApplicationProperties",
+      "name": "com.senior",
+      "type": "com.senior.app.ApplicationProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.senior.app.ApplicationProperties",
+      "name": "com.senior.database-host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.senior.app.ApplicationProperties",
+      "name": "com.senior.database-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.senior.app.ApplicationProperties",
+      "name": "com.senior.database-password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.senior.app.ApplicationProperties",
+      "name": "com.senior.database-port",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.senior.app.ApplicationProperties",
+      "name": "com.senior.database-username",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "com.senior.databaseHost",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "com.senior.databaseName",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "com.senior.databasePassword",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "com.senior.databasePort",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "com.senior.databaseUsername",
+      "type": "java.lang.String"
+    }
+  ]
+}

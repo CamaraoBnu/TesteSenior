@@ -11,9 +11,13 @@ import com.senior.services.ProductService;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Log4j2
 @RestController
@@ -28,17 +32,14 @@ public class CartProductController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping(path = "/{productId}/{cartId}", produces = "application/json", consumes = "application/json")
-    public CartProductResponse create(@Valid @RequestBody CartProductRequest body,
+    @PostMapping(path = "/{productId}/{cartId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = "application/json")
+    public Map<String,String> create(@Valid @RequestBody CartProductRequest body,
                                       @PathVariable String productId,
                                       @PathVariable String cartId ) {
 
-
         Product product = productService.findProductById(productId);
         Cart cart = cartService.findCartById(cartId);
-
-        CartProductResponse cartProductCreated = CartProductService.addProductToCart(body, product, cart);
-        return cartProductCreated;
+        return CartProductService.addProductToCart(body, product, cart);
 
     }
 

@@ -1,6 +1,7 @@
 package com.senior.services;
 
 import java.util.List;
+import java.util.Map;
 
 import com.senior.dto.request.CartRequest;
 import com.senior.dto.response.CartResponse;
@@ -16,5 +17,5 @@ public interface CartService {
     CartResponse updateCartById(CartRequest request, String id);
     CartResponse deleteCartById(CartRequest request, String id);
 
-    Double getTotalPriceDiscount(CartRequest request);
+    Map<String,Double> getTotalPriceDiscount(CartRequest request);
 }
